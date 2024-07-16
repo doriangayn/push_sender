@@ -24,6 +24,8 @@ from dotenv import load_dotenv
 async def main():
     rabbitmq_url = os.getenv("RABBITMQ_URL")
 
+    print(rabbitmq_url)
+
     queue_callbacks = {
         REACTIVATION_1_QUEUE_NAME: reactivation_1_process,
         REACTIVATION_2_QUEUE_NAME: reactivation_2_process,
