@@ -11,7 +11,7 @@ class RabbitMQConsumer:
         self.rabbitmq_url = rabbitmq_url
 
     async def connect(self):
-        self.connection = await aio_pika.connect_robust(self.rabbitmq_url)
+        self.connection = await aio_pika.connect_robust(self.rabbitmq_url, ssl=False)
         for queue_name in self.queue_callbacks.keys():
             channel = await self.connection.channel()
             queue = await channel.declare_queue(queue_name, durable=True)
@@ -21,7 +21,7 @@ class RabbitMQConsumer:
     async def consume(self):
         for queue, callback in zip(self.queues, self.queue_callbacks.values()):
             await queue.consume(callback)
-        print('Waiting for messages. To exit press CTRL+C')
+        print('Waiting for messages')
         try:
             await asyncio.Future()  # Run forever
         finally:
