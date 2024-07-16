@@ -11,7 +11,7 @@ class RabbitMQConsumer:
         self.rabbitmq_url = rabbitmq_url
 
     async def connect(self):
-        self.connection = await aio_pika.connect_robust(self.rabbitmq_url, ssl=False)
+        self.connection = await aio_pika.connect_robust(self.rabbitmq_url, ssl=False, ssl_options={})
         for queue_name in self.queue_callbacks.keys():
             channel = await self.connection.channel()
             queue = await channel.declare_queue(queue_name, durable=True)
