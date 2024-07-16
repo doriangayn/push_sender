@@ -20,7 +20,7 @@ class RabbitMQConsumer:
 
     async def consume(self):
         for queue, callback in zip(self.queues, self.queue_callbacks.values()):
-            await queue.consume(callback, no_ack=True)
+            await queue.consume(callback)
         print('Waiting for messages. To exit press CTRL+C')
         try:
             await asyncio.Future()  # Run forever
