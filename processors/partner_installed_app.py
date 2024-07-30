@@ -2,7 +2,7 @@ import json
 
 import aio_pika
 
-from firebase.text import PARTNER_INSTALLED_APP_PUSH_TITLE, PARTNER_INSTALLED_APP_PUSH_BODY
+from firebase.text import PARTNER_INSTALLED_APP_PUSH_TITLE, PARTNER_INSTALLED_APP_PUSH_BODY, PARTNER_INSTALLED_APP_PUSH_NAME
 
 from processors.base import base_process
 
@@ -16,6 +16,6 @@ async def partner_installed_app_process(message: aio_pika.IncomingMessage):
             partner_name = data['partner_name']
 
             title = PARTNER_INSTALLED_APP_PUSH_TITLE.format(partner_name)
-            await base_process(token, title, PARTNER_INSTALLED_APP_PUSH_BODY)
+            await base_process(token, title, PARTNER_INSTALLED_APP_PUSH_BODY, PARTNER_INSTALLED_APP_PUSH_NAME)
         except Exception as e:
             print(f"Error processing message: {e}")

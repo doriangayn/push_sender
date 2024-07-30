@@ -4,4 +4,4 @@ from firebase.firebase_client import FirebaseClient
 async def base_process(token, title, body, push_name):
     firebase_client = FirebaseClient()
 
-    await firebase_client.send_push_notification(token, title, body)
+    await firebase_client.send_push_notification(token, title, body, push_name)
