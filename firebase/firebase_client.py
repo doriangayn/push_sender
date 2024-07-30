@@ -15,14 +15,15 @@ class FirebaseClient:
             cls._instance.app = firebase_admin.initialize_app(cred)
         return cls._instance
 
-    async def send_push_notification(self, token, title, body):
+    async def send_push_notification(self, token, title, body, push_name):
         message = messaging.Message(
             notification=messaging.Notification(
                 title=title,
                 body=body,
             ),
             token=token,
-        )
+            apns=messaging.APNSConfig(payload=messaging.APNSPayload(
+                aps=messaging.Aps(content_available=True, custom_data={'push_name': push_name}))))
 
         loop = asyncio.get_event_loop()
         response = await loop.run_in_executor(None, messaging.send, message)
