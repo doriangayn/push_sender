@@ -2,7 +2,7 @@ import asyncio
 
 import os
 
-from rabbitmq.rabbitmq import RabbitMQConsumer
+from rabbitmq.rabbitmq import RabbitMQConsumer, RabbitMQProducer
 from rabbitmq.constants import (REACTIVATION_1_QUEUE_NAME, REACTIVATION_2_QUEUE_NAME, REACTIVATION_3_QUEUE_NAME,
                                 PARTNER_INSTALLED_APP_QUEUE_NAME, PARTNER_WAITING_QUEUE_NAME,
                                 PARTNER_ANSWERED_QUEUE_NAME, PARTNER_NOT_INSTALLED_QUEUE_NAME, LOST_ONBO_QUEUE_NAME,
@@ -25,6 +25,8 @@ async def main():
     rabbitmq_url = os.getenv("RABBITMQ_URL")
 
     print(rabbitmq_url)
+
+    _ = RabbitMQProducer(rabbitmq_url=rabbitmq_url)
 
     queue_callbacks = {
         REACTIVATION_1_QUEUE_NAME: reactivation_1_process,

@@ -6,16 +6,20 @@ from firebase.text import STREAK_1_PUSH_TITLE, STREAK_1_PUSH_BODY, STREAK_1_PUSH
 
 from processors.base import base_process
 
+from rabbitmq.rabbitmq import RabbitMQProducer
+
 
 async def streak_1_process(message: aio_pika.IncomingMessage):
     async with message.process():
-        print("Received message from queue:", message.body)
+        print("Received message from queue:", STREAK_1_PUSH_NAME, ' message:', message.body)
         try:
             data = json.loads(message.body)
             token = data['push_token']
             partner_name = data['partner_name']
+            apphud_user_id = data.get('apphud_user_id')
 
             title = STREAK_1_PUSH_TITLE.format(partner_name)
-            await base_process(token, title, STREAK_1_PUSH_BODY, STREAK_1_PUSH_NAME)
+            rabbitmq_client = RabbitMQProducer()
+            await base_process(token, title, STREAK_1_PUSH_BODY, STREAK_1_PUSH_NAME, rabbitmq_client, apphud_user_id)
         except Exception as e:
             print(f"Error processing message: {e}")
