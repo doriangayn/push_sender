@@ -1,4 +1,4 @@
-PARTNER_INSTALLED_APP_PUSH_TITLE = "{} has joined! 🥰🥰🥰"
+PARTNER_INSTALLED_APP_PUSH_TITLE = "Partner has joined! 🥰🥰🥰"
 PARTNER_INSTALLED_APP_PUSH_BODY = "Open Lovon and start your journey to better understanding each other."
 
 PARTNER_IS_WAITING_PUSH_TITLE = "{} has answered a question!"
@@ -31,6 +31,9 @@ STREAK_1_PUSH_BODY = "❤ You've completed several surveys. Keep going!"
 ANNIVERSARY_PUSH_TITLE = "Happy Anniversary!"
 ANNIVERSARY_PUSH_BODY = "❤ Don't forget to celebrate your love milestones together."
 
+QUESTION_REACTION_TITLE = "{} reacted to your answer!"
+QUESTION_REACTION_BODY = "Tap here! 👀"
+
 ANNIVERSARY_PUSH_NAME = "ANNIVERSARY"
 STREAK_1_PUSH_NAME = "STREAK_1"
 LOST_FIRST_QUESTION_PUSH_NAME = "LOST_FIRST_QUESTION"
@@ -42,3 +45,4 @@ REACTIVATE_1_PUSH_NAME = "REACTIVATE_1"
 PARTNER_ANSWERED_PUSH_NAME = "PARTNER_ANSWERED"
 PARTNER_IS_WAITING_PUSH_NAME = "PARTNER_ANSWERED"
 PARTNER_INSTALLED_APP_PUSH_NAME = "PARTNER_INSTALLED"
+QUESTION_REACTION_PUSH_NAME = "PARTNER_SENT_REACTION"

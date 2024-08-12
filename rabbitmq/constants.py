@@ -9,5 +9,6 @@ LOST_ONBO_QUEUE_NAME = "lost_onbo_push"
 LOST_FIRST_QUESTION_QUEUE_NAME = "lost_first_question_push"
 STREAK_1_QUEUE_NAME = "streak_1_push"
 ANNIVERSARY_QUEUE_NAME = "anniversary_push"
+QUESTION_REACTION_QUEUE_NAME = "question_reaction_push"
 
 ANALYTICS_SEND_PUSH_SEND_QUEUE_NAME = "analytics_send_push_send"
