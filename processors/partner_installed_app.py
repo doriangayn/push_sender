@@ -14,7 +14,7 @@ async def partner_installed_app_process(message: aio_pika.IncomingMessage):
         print("Received message from queue:", PARTNER_INSTALLED_APP_PUSH_NAME, ' message:', message.body)
         try:
             data = json.loads(message.body)
-            token = data.get('push_token')
+            token = data['push_token']
 
             apphud_user_id = data.get('apphud_user_id')
 
