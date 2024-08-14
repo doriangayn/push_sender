@@ -8,7 +8,8 @@ from rabbitmq.constants import (REACTIVATION_1_QUEUE_NAME, REACTIVATION_2_QUEUE_
                                 PARTNER_ANSWERED_QUEUE_NAME, PARTNER_NOT_INSTALLED_QUEUE_NAME, LOST_ONBO_QUEUE_NAME,
                                 LOST_FIRST_QUESTION_QUEUE_NAME, STREAK_1_QUEUE_NAME, ANNIVERSARY_QUEUE_NAME,
                                 QUESTION_REACTION_QUEUE_NAME, PARTNER_IS_WAITING_CARD_GAME_QUEUE_NAME,
-                                PARTNER_ANSWERED_CARD_GAME_QUEUE_NAME)
+                                PARTNER_ANSWERED_CARD_GAME_QUEUE_NAME, PARTNER_SENT_REACTION_CARD_GAME_QUEUE_NAME,
+                                PARTNER_COMMENTED_CARD_GAME_QUEUE_NAME)
 
 from processors.reactivation import reactivation_1_process, reactivation_2_process, reactivation_3_process
 from processors.lost_onbo import lost_onbo_process
@@ -22,6 +23,8 @@ from processors.anniversary import anniversary_process
 from processors.question_reaction import partner_question_reaction_process
 from processors.partner_answered_card_game import partner_answered_card_game_process
 from processors.partner_is_waiting_card_game import partner_is_waiting_card_game_process
+from processors.partner_sent_reaction_card_game import partner_sent_reaction_card_game_process
+from processors.partner_commented_card_game import partner_commented_card_game_process
 
 from dotenv import load_dotenv
 
@@ -47,7 +50,9 @@ async def main():
         ANNIVERSARY_QUEUE_NAME: anniversary_process,
         QUESTION_REACTION_QUEUE_NAME: partner_question_reaction_process,
         PARTNER_ANSWERED_CARD_GAME_QUEUE_NAME: partner_answered_card_game_process,
-        PARTNER_IS_WAITING_CARD_GAME_QUEUE_NAME: partner_is_waiting_card_game_process
+        PARTNER_IS_WAITING_CARD_GAME_QUEUE_NAME: partner_is_waiting_card_game_process,
+        PARTNER_SENT_REACTION_CARD_GAME_QUEUE_NAME: partner_sent_reaction_card_game_process,
+        PARTNER_COMMENTED_CARD_GAME_QUEUE_NAME: partner_commented_card_game_process
     }
 
     consumer = RabbitMQConsumer(rabbitmq_url=rabbitmq_url, queue_callbacks=queue_callbacks)
