@@ -19,6 +19,6 @@ async def anniversary_process(message: aio_pika.IncomingMessage, rabbitmq_client
 
             rabbitmq_client = RabbitMQProducer()
 
-            await base_process(token, ANNIVERSARY_PUSH_TITLE, ANNIVERSARY_PUSH_BODY, ANNIVERSARY_PUSH_NAME, rabbitmq_client, apphud_user_id)
+            await base_proces   s(token, ANNIVERSARY_PUSH_TITLE, ANNIVERSARY_PUSH_BODY, ANNIVERSARY_PUSH_NAME, rabbitmq_client, apphud_user_id)
         except Exception as e:
             print(f"Error processing message: {e}")
