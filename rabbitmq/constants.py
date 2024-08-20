@@ -17,5 +17,6 @@ PARTNER_SENT_REACTION_CARD_GAME_QUEUE_NAME = "partner_sent_reaction_card_game_pu
 PARTNER_NUDGED_ABOUT_RELATIONSHIP_CHECKUP_QUEUE_NAME = "partner_nudged_about_relationship_checkup_push"
 PARTNER_COMPLETED_CHECKUP_QUEUE_NAME = "partner_completed_checkup_push"
 BOTH_PARTNERS_COMPLETED_CHECKUP_QUEUE_NAME = "both_partners_completed_checkup_push"
+PARTNER_STARTED_CHECKUP_QUEUE_NAME = "partner_started_checkup_push"
 
 ANALYTICS_SEND_PUSH_SEND_QUEUE_NAME = "analytics_send_push_send"

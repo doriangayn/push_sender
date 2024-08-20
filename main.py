@@ -11,7 +11,8 @@ from rabbitmq.constants import (REACTIVATION_1_QUEUE_NAME, REACTIVATION_2_QUEUE_
                                 PARTNER_ANSWERED_CARD_GAME_QUEUE_NAME, PARTNER_SENT_REACTION_CARD_GAME_QUEUE_NAME,
                                 PARTNER_COMMENTED_CARD_GAME_QUEUE_NAME,
                                 PARTNER_NUDGED_ABOUT_RELATIONSHIP_CHECKUP_QUEUE_NAME,
-                                PARTNER_COMPLETED_CHECKUP_QUEUE_NAME, BOTH_PARTNERS_COMPLETED_CHECKUP_QUEUE_NAME)
+                                PARTNER_COMPLETED_CHECKUP_QUEUE_NAME, BOTH_PARTNERS_COMPLETED_CHECKUP_QUEUE_NAME,
+                                PARTNER_STARTED_CHECKUP_QUEUE_NAME)
 
 from processors.reactivation import reactivation_1_process, reactivation_2_process, reactivation_3_process
 from processors.lost_onbo import lost_onbo_process
@@ -30,6 +31,7 @@ from processors.partner_commented_card_game import partner_commented_card_game_p
 from processors.partner_nudged_relationship_checkup import partner_nudged_about_checkup_process
 from processors.both_partners_completed_checkup import both_partners_completed_checkup
 from processors.patner_completed_checkup import partner_completed_checkup
+from processors.partner_started_checkup import partner_started_checkup
 
 from dotenv import load_dotenv
 
@@ -60,7 +62,8 @@ async def main():
         PARTNER_COMMENTED_CARD_GAME_QUEUE_NAME: partner_commented_card_game_process,
         PARTNER_NUDGED_ABOUT_RELATIONSHIP_CHECKUP_QUEUE_NAME: partner_nudged_about_checkup_process,
         PARTNER_COMPLETED_CHECKUP_QUEUE_NAME: partner_completed_checkup,
-        BOTH_PARTNERS_COMPLETED_CHECKUP_QUEUE_NAME: both_partners_completed_checkup
+        BOTH_PARTNERS_COMPLETED_CHECKUP_QUEUE_NAME: both_partners_completed_checkup,
+        PARTNER_STARTED_CHECKUP_QUEUE_NAME: partner_started_checkup,
     }
 
     consumer = RabbitMQConsumer(rabbitmq_url=rabbitmq_url, queue_callbacks=queue_callbacks)
