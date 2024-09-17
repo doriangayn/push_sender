@@ -13,7 +13,8 @@ from rabbitmq.constants import (REACTIVATION_1_QUEUE_NAME, REACTIVATION_2_QUEUE_
                                 PARTNER_NUDGED_ABOUT_RELATIONSHIP_CHECKUP_QUEUE_NAME,
                                 PARTNER_COMPLETED_CHECKUP_QUEUE_NAME, BOTH_PARTNERS_COMPLETED_CHECKUP_QUEUE_NAME,
                                 PARTNER_STARTED_CHECKUP_QUEUE_NAME, PARTNER_INSTALLED_WIDGET_QUEUE_NAME,
-                                PARTNER_COMPLETED_SETUP_QUEUE_NAME)
+                                PARTNER_COMPLETED_SETUP_QUEUE_NAME, PARTNER_SENT_PIC_QUEUE_NAME,
+                                PARTNER_VIEWED_PIC_QUEUE_NAME, SEND_PIC_REMINDER_QUEUE_NAME)
 
 from processors.reactivation import reactivation_1_process, reactivation_2_process, reactivation_3_process
 from processors.lost_onbo import lost_onbo_process
@@ -35,6 +36,8 @@ from processors.patner_completed_checkup import partner_completed_checkup
 from processors.partner_started_checkup import partner_started_checkup
 from processors.partner_completed_setup import partner_completed_setup
 from processors.partner_installed_widget import partner_installed_widget_process
+from processors.partner_sent_pic import partner_sent_pic_process
+from processors.partner_viewed_pic import partner_view_pic_process
 
 from dotenv import load_dotenv
 
@@ -68,7 +71,9 @@ async def main():
         BOTH_PARTNERS_COMPLETED_CHECKUP_QUEUE_NAME: both_partners_completed_checkup,
         PARTNER_STARTED_CHECKUP_QUEUE_NAME: partner_started_checkup,
         PARTNER_COMPLETED_SETUP_QUEUE_NAME: partner_completed_setup,
-        PARTNER_INSTALLED_WIDGET_QUEUE_NAME: partner_installed_widget_process
+        PARTNER_INSTALLED_WIDGET_QUEUE_NAME: partner_installed_widget_process,
+        PARTNER_SENT_PIC_QUEUE_NAME: partner_sent_pic_process,
+        PARTNER_VIEWED_PIC_QUEUE_NAME: partner_view_pic_process,
     }
 
     consumer = RabbitMQConsumer(rabbitmq_url=rabbitmq_url, queue_callbacks=queue_callbacks)
