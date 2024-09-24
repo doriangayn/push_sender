@@ -42,6 +42,7 @@ class FirebaseClient:
                 ),
                 headers={
                     'apns-priority': '5',  # Высокий приоритет доставки для iOS
+                    'apns-push-type': 'liveactivity'
                 }
             ),
             # TODO: мб понадобится
