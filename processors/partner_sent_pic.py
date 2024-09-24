@@ -41,15 +41,26 @@ async def partner_sent_pic_live_activity_process(message: aio_pika.IncomingMessa
             partner_avatar_url = data.get('partner_avatar_url')
             comment = data.get('comment')
 
+            # TODO: refactor this if
+            if not comment:
+                payload = {
+                    'img_url': img_url,
+                    'partner_avatar_url': partner_avatar_url,
+                    'partner_name': partner_name,
+                    'action': 'update'
+                }
+            else:
+                payload = {
+                    'img_url': img_url,
+                    'partner_avatar_url': partner_avatar_url,
+                    'partner_name': partner_name,
+                    'comment': comment,
+                    'action': 'update'
+                }
+
             rabbitmq_client = RabbitMQProducer()
 
-            await silent_base_process(token, {
-                'img_url': img_url,
-                'partner_avatar_url': partner_avatar_url,
-                'partner_name': partner_name,
-                'comment': comment,
-                'action': 'update'
-            }, PARTNER_SENT_PIC_LIVE_ACTIVITY_PUSH_NAME, rabbitmq_client, apphud_user_id)
+            await silent_base_process(token, payload, PARTNER_SENT_PIC_LIVE_ACTIVITY_PUSH_NAME, rabbitmq_client, apphud_user_id)
         except Exception as e:
             print(f"Error processing message: {e}")
 
