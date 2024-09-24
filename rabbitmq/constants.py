@@ -21,6 +21,8 @@ PARTNER_STARTED_CHECKUP_QUEUE_NAME = "partner_started_checkup_push"
 PARTNER_COMPLETED_SETUP_QUEUE_NAME = "partner_completed_setup_push"
 PARTNER_INSTALLED_WIDGET_QUEUE_NAME = "partner_installed_widget_push"
 PARTNER_SENT_PIC_QUEUE_NAME = "partner_sent_pic_push"
+PARTNER_SENT_PIC_LIVE_ACTIVITY_QUEUE_NAME = "partner_sent_pic_live_activity"
+PARTNER_SENT_PIC_LIVE_ACTIVITY_END_QUEUE_NAME = "partner_sent_pic_live_activity_end"
 PARTNER_VIEWED_PIC_QUEUE_NAME = "partner_viewed_pic_push"
 SEND_PIC_REMINDER_QUEUE_NAME = "send_pic_reminder_push"
 

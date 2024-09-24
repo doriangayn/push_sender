@@ -31,6 +31,27 @@ class FirebaseClient:
         response = await loop.run_in_executor(None, messaging.send, message)
         print('Successfully sent message:', response)
 
+    async def send_silent_push_notification(self, token, payload):
+        custom_data = payload
+        message = messaging.Message(
+            data=custom_data,
+            token=token,
+            apns=messaging.APNSConfig(
+                payload=messaging.APNSPayload(
+                    aps=messaging.Aps(content_available=True)  # Устанавливаем флаг сайлент-пуша
+                )
+            ),
+            # TODO: мб понадобится
+            # android=messaging.AndroidConfig(
+            #     priority="high",  # Для Android нужно указать высокий приоритет
+            #     data=custom_data  # Передаем данные в Android
+            # )
+        )
+
+        loop = asyncio.get_event_loop()
+        response = await loop.run_in_executor(None, messaging.send, message)
+        print('Successfully sent silent push:', response)
+
     async def send_multicast_push_notification(self, tokens, title, body):
         message = messaging.MulticastMessage(
             notification=messaging.Notification(
