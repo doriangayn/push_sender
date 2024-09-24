@@ -41,7 +41,8 @@ class FirebaseClient:
                     aps=messaging.Aps(content_available=True)  # Устанавливаем флаг сайлент-пуша
                 ),
                 headers={
-                    'apns-priority': '10'  # Высокий приоритет доставки для iOS
+                    'apns-priority': '10',  # Высокий приоритет доставки для iOS
+                    'apns-push-type': 'liveactivity'
                 }
             ),
             # TODO: мб понадобится
