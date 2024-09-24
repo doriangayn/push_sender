@@ -28,9 +28,11 @@ async def silent_base_process(token, payload, push_name, rabbitmq_client, apphud
 
     payload['push_name'] = push_name
 
+    dump_payload = json.dumps(payload)
+
     firebase_client = FirebaseClient()
 
-    await firebase_client.send_silent_push_notification(token, payload)
+    await firebase_client.send_silent_push_notification(token, dump_payload)
 
     analytics_message = json.dumps({
         'push_name': push_name,
