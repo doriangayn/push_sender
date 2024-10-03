@@ -48,5 +48,8 @@ async def update_live_activity_process(message: aio_pika.IncomingMessage):
 #         except Exception as e:
 #             print(f"Error processing message: {e}")
 async def remove_none_values(d: dict) -> dict:
-    """Удаляет ключи с None значениями из словаря"""
-    return {k: v for k, v in d.items() if v is not None}
+    """
+    Удаляет ключи с None значениями и приводит все значения к строкам
+    """
+    return {k: str(v) for k, v in d.items() if v is not None}
+
