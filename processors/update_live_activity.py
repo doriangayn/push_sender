@@ -13,9 +13,14 @@ from rabbitmq.rabbitmq import RabbitMQProducer
 
 class DataObject:
     def __init__(self, data):
-        for key, value in data.items():
-            if value is not None:
-                setattr(self, key, value)
+        self.__dict__.update(data)
+
+    def __getitem__(self, key):
+        return getattr(self, key, None)
+
+    def __setitem__(self, key, value):
+        setattr(self, key, value)
+
 
 
 async def update_live_activity_process(message: aio_pika.IncomingMessage):
