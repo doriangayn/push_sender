@@ -19,7 +19,7 @@ async def update_live_activity_process(message: aio_pika.IncomingMessage):
             token = data['push_token']
             apphud_user_id = data.get('apphud_user_id')
 
-            payload = data.copy()
+            payload = remove_none_values(data.copy())
 
             rabbitmq_client = RabbitMQProducer()
 
@@ -47,3 +47,6 @@ async def update_live_activity_process(message: aio_pika.IncomingMessage):
 #             }, PARTNER_SENT_PIC_LIVE_ACTIVITY_END_PUSH_NAME, rabbitmq_client, apphud_user_id)
 #         except Exception as e:
 #             print(f"Error processing message: {e}")
+def remove_none_values(d: dict) -> dict:
+    """Удаляет ключи с None значениями из словаря"""
+    return {k: v for k, v in d.items() if v is not None}
