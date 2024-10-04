@@ -16,7 +16,7 @@ from rabbitmq.constants import (REACTIVATION_1_QUEUE_NAME, REACTIVATION_2_QUEUE_
                                 PARTNER_COMPLETED_SETUP_QUEUE_NAME, PARTNER_SENT_PIC_QUEUE_NAME,
                                 PARTNER_VIEWED_PIC_QUEUE_NAME, SEND_PIC_REMINDER_QUEUE_NAME,
                                 PARTNER_SENT_PIC_LIVE_ACTIVITY_QUEUE_NAME, PARTNER_SENT_PIC_LIVE_ACTIVITY_END_QUEUE_NAME,
-                                SEND_LIVE_ACTIVITY_PUSH_QUEUE_NAME)
+                                SEND_LIVE_ACTIVITY_PUSH_QUEUE_NAME, PARTNER_SET_MOOD_QUEUE_NAME)
 
 from processors.reactivation import reactivation_1_process, reactivation_2_process, reactivation_3_process
 from processors.lost_onbo import lost_onbo_process
@@ -43,6 +43,7 @@ from processors.partner_sent_pic import (partner_sent_pic_process, partner_sent_
 from processors.partner_viewed_pic import partner_view_pic_process
 from processors.send_pic_reminder import send_pic_reminder_process
 from processors.update_live_activity import update_live_activity_process
+from processors.partner_set_mood import partner_set_mood_proccess
 
 from dotenv import load_dotenv
 
@@ -83,6 +84,7 @@ async def main():
         PARTNER_SENT_PIC_LIVE_ACTIVITY_QUEUE_NAME: partner_sent_pic_live_activity_process,
         PARTNER_SENT_PIC_LIVE_ACTIVITY_END_QUEUE_NAME: partner_sent_pic_live_activity_end_process,
         SEND_LIVE_ACTIVITY_PUSH_QUEUE_NAME: update_live_activity_process,
+        PARTNER_SET_MOOD_QUEUE_NAME: partner_set_mood_proccess
     }
 
     consumer = RabbitMQConsumer(rabbitmq_url=rabbitmq_url, queue_callbacks=queue_callbacks)
