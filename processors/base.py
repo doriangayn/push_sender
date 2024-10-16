@@ -3,13 +3,13 @@ import json
 from firebase.firebase_client import FirebaseClient
 
 
-async def base_process(token, title, body, push_name, rabbitmq_client, apphud_user_id):
+async def base_process(token, title, body, push_name, rabbitmq_client, apphud_user_id, custom_data):
     if token is None:
         return
 
     firebase_client = FirebaseClient()
 
-    await firebase_client.send_push_notification(token, title, body, push_name)
+    await firebase_client.send_push_notification(token, title, body, push_name, custom_data)
 
     analytics_message = json.dumps({
         'push_name': push_name,

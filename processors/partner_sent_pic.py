@@ -44,12 +44,13 @@ async def partner_sent_pic_live_activity_process(message: aio_pika.IncomingMessa
             # TODO: refactor this if
             if not comment:
                 payload = {
+                    'type': 'photo',
                     'status': 'sent_pic',
                     'img_url': img_url,
                     'partner_avatar_url': partner_avatar_url,
                     'partner_name': partner_name,
                     'action': 'update',
-                    'live_activity_type': 'photo'
+                    'live_activity_type': 'photo',
                 }
             else:
                 payload = {
@@ -59,7 +60,8 @@ async def partner_sent_pic_live_activity_process(message: aio_pika.IncomingMessa
                     'partner_name': partner_name,
                     'comment': comment,
                     'action': 'update',
-                    'live_activity_type': 'photo'
+                    'live_activity_type': 'photo',
+                    'type': 'photo'
                 }
 
             rabbitmq_client = RabbitMQProducer()

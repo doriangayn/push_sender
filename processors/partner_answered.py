@@ -18,10 +18,14 @@ async def partner_answered_process(message: aio_pika.IncomingMessage):
             partner_name = data['partner_name']
             apphud_user_id = data.get('apphud_user_id')
 
+            question_id = data.get('question_id')
+
             title = PARTNER_ANSWERED_PUSH_TITLE.format(partner_name)
+
+            custom_data = {"question_id": question_id}
 
             rabbitmq_client = RabbitMQProducer()
 
-            await base_process(token, title, PARTNER_ANSWERED_PUSH_BODY, PARTNER_ANSWERED_PUSH_NAME, rabbitmq_client, apphud_user_id)
+            await base_process(token, title, PARTNER_ANSWERED_PUSH_BODY, PARTNER_ANSWERED_PUSH_NAME, rabbitmq_client, apphud_user_id, custom_data)
         except Exception as e:
             print(f"Error processing message: {e}")

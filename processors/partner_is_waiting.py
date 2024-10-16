@@ -17,10 +17,13 @@ async def partner_is_waiting_process(message: aio_pika.IncomingMessage):
             token = data['push_token']
             partner_name = data['partner_name']
             apphud_user_id = data.get('apphud_user_id')
+            question_id = data.get('question_id')
 
             rabbitmq_client = RabbitMQProducer()
 
+            custom_data = {"question_id": question_id}
+
             title = PARTNER_IS_WAITING_PUSH_TITLE.format(partner_name)
-            await base_process(token, title, PARTNER_IS_WAITING_PUSH_BODY, PARTNER_IS_WAITING_PUSH_NAME, rabbitmq_client, apphud_user_id)
+            await base_process(token, title, PARTNER_IS_WAITING_PUSH_BODY, PARTNER_IS_WAITING_PUSH_NAME, rabbitmq_client, apphud_user_id, custom_data)
         except Exception as e:
             print(f"Error processing message: {e}")
