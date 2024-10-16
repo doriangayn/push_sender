@@ -18,9 +18,7 @@ async def partner_is_waiting_process(message: aio_pika.IncomingMessage):
             token = data['push_token']
             partner_name = data['partner_name']
             apphud_user_id = data.get('apphud_user_id')
-            question_id = data.get('question_id')
-
-            print(question_id)
+            question_id = str(data.get('question_id', None))
 
             rabbitmq_client = RabbitMQProducer()
 
