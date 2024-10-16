@@ -15,7 +15,7 @@ class FirebaseClient:
             cls._instance.app = firebase_admin.initialize_app(cred)
         return cls._instance
 
-    async def send_push_notification(self, token, title, body, push_name, custom_data):
+    async def send_push_notification(self, token, title, body, push_name, custom_data = None):
         if not custom_data:
             custom_data = {'push_name': push_name}
         else:
@@ -33,7 +33,7 @@ class FirebaseClient:
 
         loop = asyncio.get_event_loop()
         response = await loop.run_in_executor(None, messaging.send, message)
-        print('Successfully sent message:', response)
+        print('Successfully sent message:', message, 'firebase response:', response)
 
     async def send_silent_push_notification(self, token, payload):
         custom_data = payload
