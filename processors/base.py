@@ -3,7 +3,7 @@ import json
 from firebase.firebase_client import FirebaseClient
 
 
-async def base_process(token, title, body, push_name, rabbitmq_client, apphud_user_id, custom_data = None):
+async def base_process(token, title, body, push_name, rabbitmq_client, apphud_user_id, custom_data=None):
     if token is None:
         return
 

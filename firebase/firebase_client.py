@@ -15,7 +15,7 @@ class FirebaseClient:
             cls._instance.app = firebase_admin.initialize_app(cred)
         return cls._instance
 
-    async def send_push_notification(self, token, title, body, push_name, custom_data = None):
+    async def send_push_notification(self, token, title, body, push_name, custom_data=None):
         if not custom_data:
             custom_data = {'push_name': push_name}
         else:
